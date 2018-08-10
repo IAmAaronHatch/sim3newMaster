@@ -26,6 +26,8 @@ class Form extends Component {
                 <input />
                 <h3>Content:</h3>
                 <textarea rows='5' cols='200' />
+                <br />
+                <button>Post</button>
             </div>
         )
     }
