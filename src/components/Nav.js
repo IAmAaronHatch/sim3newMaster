@@ -7,7 +7,7 @@ function Nav(props) {
         <div>
             Nav
             <h4>{props.username}</h4>
-            <img src={props.profilePic} />
+            <img src={props.profilePic} alt='' />
             <Link to='/dashboard'><button>Home</button></Link>
             <Link to='/new'><button>New Post</button></Link>
             <Link to='/'><button>Logout</button></Link>
