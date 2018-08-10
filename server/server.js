@@ -25,13 +25,13 @@ app.use(session({
 app.use(bodyParser.json())
 
 
-//app.get('/', )
+//auth
 app.post('/login', AuthCtrl.login)
 app.post('/register', AuthCtrl.register)
-//app.put('/', )
-//app.delete('/', )
 
-
+//post 
+app.get('/api/posts/', PostCtrl.read)
+app.post('/api/post/:userid', PostCtrl.create)
 
 app.listen(port, () => {
     console.log(`Never gonna give ${port} up, Never gonna let ${port} down.`)

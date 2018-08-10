@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 function Nav(props) {
     return (
         <div>
-            Nav
             <h4>{props.username}</h4>
             <img src={props.profilePic} alt='' />
             <Link to='/dashboard'><button>Home</button></Link>

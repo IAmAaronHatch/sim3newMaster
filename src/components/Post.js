@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
-// import axios from 'axios'
+import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-class Post extends Component {
-
-    render() {
-        return (
-            <div>
-                One Post
-            </div>
-        )
-    }
+function Post (props) {
+    return (
+        <div>
+            {props.post && <div>
+                <h1>{props.post.title}</h1>
+                <p>{props.post.img}</p>
+                <br/>
+                <p>{props.post.content}</p>
+            </div>}
+            <Link to='/dashboard'><button>Back</button></Link>
+        </div>
+    )
 }
 
-// let mapStateToProps = (state, props) => {
-//     let { id } = props.match.params
-//     let post = state.posts.data.find(post => Number(post.id) === Number(id))
+let mapStateToProps = (state, props) => {
+    let { id } = props.match.params
+    let post = state.posts.data.find(post => Number(post.id) === Number(id))
+    return { post }
+}
 
-//     return { post }
-// }
-
-// export default connect(mapStateToProps)(Post)
-
-export default Post
+export default connect (mapStateToProps)(Post)

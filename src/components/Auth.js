@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
+// import { withRouter } from 'react-router-dom'
 
-import addUser from '../ducks/reducer'
+import addUser from '../ducks/reducers/user'
 
 class Auth extends Component {
     constructor() {
@@ -17,6 +18,8 @@ class Auth extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
     }
 
+
+
     handleUsernameChange(e) {
         this.setState({
             username: e.target.value
@@ -29,6 +32,9 @@ class Auth extends Component {
     }
 
     login = () => {
+
+
+        
         const { username, password } = this.state
         if (username && password) {
             axios.post('/login', {
@@ -41,24 +47,24 @@ class Auth extends Component {
                     })
                 } else {
                     this.setState({
-                        login: 'Successfully Logged In'
+                        login: 'You Logged In!'
                     })
                     this.props.addUser(this.state)
-                    this.props.history.push('/Dashboard')
+                    this.props.history.push('/dashboard')
                 }
             })
         }
     }
 
     register = () => {
-        const { username, password } = this.state 
-        if(username && password) {
+        const { username, password } = this.state
+        if (username && password) {
             axios.post('/register', {
                 username: username.toLowerCase(),
                 password: password
-            }).then (results => {
+            }).then(results => {
                 this.props.addUser(this.state)
-                this.props.history.push('/Dashboard')
+                this.props.history.push('/dashboard')
             })
         }
     }
@@ -66,13 +72,18 @@ class Auth extends Component {
     render() {
         return (
             <div>
-                <input placeholder='username' onChange={this.handleUsernameChange}/>
-                <input placeholder='password' onChange={this.handlePasswordChange}/>
-                <button onClick={this.login}>Login</button>
-                <button onClick={this.register}>Register</button>
+                <h1>Helo :> </h1>
+                <input placeholder='username' onChange={this.handleUsernameChange} />
+                <br />
+                <input placeholder='password' onChange={this.handlePasswordChange} />
+                <br />
+                <br />
+                <button onClick={() => this.login()}>Login</button>
+                <button onClick={() => this.register()}>Register</button>
             </div>
         )
+        
     }
 }
 
-export default connect(null, {addUser})(Auth)
+export default connect(null, { addUser })(Auth)

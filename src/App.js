@@ -10,12 +10,18 @@ import Post from './components/Post';
 import Nav from './components/Nav'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state ={
+      showNav: true
+    }
+  }
   render() {
     return (
       <div className="App">
         <HashRouter>
           <div>
-            <Nav />
+            <Nav className='Nav'/>
             <Switch>
               <Route exact path='/' component={Auth} />
               <Route path='/dashboard' component={Dashboard} />
