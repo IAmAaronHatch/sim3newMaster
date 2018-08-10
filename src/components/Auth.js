@@ -12,7 +12,6 @@ class Auth extends Component {
         this.state = {
             username: '',
             password: '',
-            login: '',
         }
         this.handleUsernameChange = this.handleUsernameChange.bind(this)
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
@@ -32,29 +31,27 @@ class Auth extends Component {
     }
 
     login = () => {
-
-
-        
-        const { username, password } = this.state
-        if (username && password) {
-            axios.post('/login', {
-                username: username.toLowerCase(),
-                password: password
-            }).then(results => {
-                if (results.data.length !== 0) {
-                    this.setState({
-                        error: results.data
-                    })
-                } else {
-                    this.setState({
-                        login: 'You Logged In!'
-                    })
-                    this.props.addUser(this.state)
-                    this.props.history.push('/dashboard')
-                }
-            })
-        }
+        this.props.history.push('/dashboard')
     }
+    // login = () => {
+
+    //     const { username, password } = this.state
+    //     if (username && password) {
+    //         axios.post('/login', {
+    //             username: username.toLowerCase(),
+    //             password: password
+    //         }).then(results => {
+    //             if (results.data.length !== 0) {
+    //                 this.setState({
+    //                     error: results.data
+    //                 })
+    //             } else {
+    //                 this.props.addUser(this.state)
+    //                 this.props.history.push('/dashboard')
+    //             }
+    //         })
+    //     }
+    // }
 
     register = () => {
         const { username, password } = this.state

@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const massive = require('massive')
+const path = require('path')
 
 require('dotenv').config()
 
@@ -32,6 +33,16 @@ app.post('/register', AuthCtrl.register)
 //post 
 app.get('/api/posts/', PostCtrl.read)
 app.post('/api/post/:userid', PostCtrl.create)
+
+
+
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../build/index.html'), function (err) {
+        if(err) {
+            res.status(500).send(err)
+        }
+    })
+})
 
 app.listen(port, () => {
     console.log(`Never gonna give ${port} up, Never gonna let ${port} down.`)
